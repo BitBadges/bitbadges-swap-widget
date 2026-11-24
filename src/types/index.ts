@@ -5,7 +5,7 @@
 export interface BitBadgesSwapProps {
   /** Base URL for the BitBadges indexer API */
   apiUrl?: string;
-  /** Default source token denom (e.g. "ubadge") */
+  /** Default source token denom (e.g. "abadge") */
   defaultSourceDenom?: string;
   /** Default destination token denom */
   defaultDestDenom?: string;
@@ -49,7 +49,7 @@ export interface WalletConfig {
 // ============================================================================
 
 export interface SwapEstimateRequest {
-  /** Token in string. Formats: "amount:1,denom:ubadge" or "1ubadge" */
+  /** Token in string. Formats: "amount:1,denom:abadge" or "1abadge" */
   tokenIn: string;
   /** Chain ID for the source token. Defaults to BitBadges chain. */
   tokenInChainId?: string;

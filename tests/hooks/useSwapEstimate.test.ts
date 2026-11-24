@@ -10,10 +10,10 @@ describe('useSwapEstimate', () => {
     success: true,
     estimate: {
       tokenOutAmount: '1000000',
-      tokenInAmount: '500000',
+      tokenInAmount: '500000000000000',
       skipGoMsgs: [],
       assetPath: [
-        { denom: 'ubadge', chainId: 'bitbadges-1', how: 'genesis' as const },
+        { denom: 'abadge', chainId: 'bitbadges-1', how: 'genesis' as const },
         { denom: 'uosmo', chainId: 'bitbadges-1', how: 'swap' as const },
       ],
       doesSwap: true,
@@ -42,7 +42,7 @@ describe('useSwapEstimate', () => {
 
     await act(async () => {
       await result.current.fetchEstimateImmediate({
-        tokenIn: '500000ubadge',
+        tokenIn: '500000000000000abadge',
         tokenOutDenom: 'uosmo',
         chainIdsToAddresses: {},
         slippageTolerancePercent: '1',
@@ -65,7 +65,7 @@ describe('useSwapEstimate', () => {
     await act(async () => {
       try {
         await result.current.fetchEstimateImmediate({
-          tokenIn: '500000ubadge',
+          tokenIn: '500000000000000abadge',
           tokenOutDenom: 'uosmo',
           chainIdsToAddresses: {},
           slippageTolerancePercent: '1',
@@ -86,7 +86,7 @@ describe('useSwapEstimate', () => {
 
     await act(async () => {
       await result.current.fetchEstimateImmediate({
-        tokenIn: '500000ubadge',
+        tokenIn: '500000000000000abadge',
         tokenOutDenom: 'uosmo',
         chainIdsToAddresses: {},
         slippageTolerancePercent: '1',
@@ -111,7 +111,7 @@ describe('useSwapEstimate', () => {
     );
 
     const params = {
-      tokenIn: '500000ubadge',
+      tokenIn: '500000000000000abadge',
       tokenOutDenom: 'uosmo',
       chainIdsToAddresses: {},
       slippageTolerancePercent: '1',

@@ -50,6 +50,14 @@ export function BitBadgesSwap(props: BitBadgesSwapProps) {
 }
 
 /**
+ * Precision-safe check that a decimal string represents a strictly positive value.
+ * Avoids IEEE-754 precision loss for 18-decimal base unit amounts.
+ */
+function isPositiveAmount(value: string): boolean {
+  return /^(?:\d+\.?\d*|\.\d+)$/.test(value) && /[1-9]/.test(value);
+}
+
+/**
  * Inner component that has access to SwapContext.
  */
 function SwapWidgetInner({
@@ -111,7 +119,7 @@ function SwapWidgetInner({
 
   // Trigger estimate when inputs change
   useEffect(() => {
-    if (!sourceAsset || !destAsset || !amount || parseFloat(amount) <= 0) {
+    if (!sourceAsset || !destAsset || !isPositiveAmount(amount)) {
       clearEstimate();
       return;
     }
@@ -158,7 +166,7 @@ function SwapWidgetInner({
   }, [estimate, sourceAsset, destAsset, amount, executeSwap, addEntry, updateStatus]);
 
   const currentError = estimateError || executeError;
-  const hasAmount = !!amount && parseFloat(amount) > 0;
+  const hasAmount = isPositiveAmount(amount);
 
   return (
     <>
