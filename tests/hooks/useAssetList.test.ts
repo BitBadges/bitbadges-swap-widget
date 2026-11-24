@@ -5,7 +5,7 @@ import { BitBadgesSwapClient } from '../../src/api/client';
 import type { Asset } from '../../src/types';
 
 const mockAssets: Asset[] = [
-  { denom: 'ubadge', chainId: 'bitbadges-1', symbol: 'BADGE', name: 'BitBadges', decimals: 6 },
+  { denom: 'abadge', chainId: 'bitbadges-1', symbol: 'BADGE', name: 'BitBadges', decimals: 18 },
   { denom: 'uosmo', chainId: 'osmosis-1', symbol: 'OSMO', name: 'Osmosis', decimals: 6 },
   { denom: 'uatom', chainId: 'cosmoshub-4', symbol: 'ATOM', name: 'Cosmos Hub', decimals: 6 },
 ];

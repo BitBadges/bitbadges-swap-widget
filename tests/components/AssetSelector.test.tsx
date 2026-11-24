@@ -6,7 +6,7 @@ import { AssetSelector } from '../../src/components/AssetSelector';
 import type { Asset } from '../../src/types';
 
 const mockAssets: Asset[] = [
-  { denom: 'ubadge', chainId: 'bitbadges-1', symbol: 'BADGE', name: 'BitBadges', decimals: 6 },
+  { denom: 'abadge', chainId: 'bitbadges-1', symbol: 'BADGE', name: 'BitBadges', decimals: 18 },
   { denom: 'uosmo', chainId: 'osmosis-1', symbol: 'OSMO', name: 'Osmosis', decimals: 6 },
   { denom: 'uatom', chainId: 'cosmoshub-4', symbol: 'ATOM', name: 'Cosmos Hub', decimals: 6 },
 ];
@@ -21,7 +21,7 @@ describe('AssetSelector', () => {
 
   it('should show selected asset', () => {
     render(
-      <AssetSelector assets={mockAssets} selectedDenom="ubadge" onSelect={vi.fn()} />
+      <AssetSelector assets={mockAssets} selectedDenom="abadge" onSelect={vi.fn()} />
     );
     expect(screen.getByText('BADGE')).toBeInTheDocument();
   });

@@ -69,7 +69,7 @@ export function useSwapExecute({
         const cosmosMsgs = buildCosmosMsgs(msgs);
 
         const fee = {
-          amount: [{ denom: 'ubadge', amount: '0' }],
+          amount: [{ denom: 'abadge', amount: '0' }],
           gas: '500000',
         };
 

@@ -20,7 +20,7 @@ function App() {
   return (
     <BitBadgesSwap
       apiUrl="https://api.bitbadges.io"
-      defaultSourceDenom="ubadge"
+      defaultSourceDenom="abadge"
       defaultDestDenom="uosmo"
       theme="dark"
       onSwapComplete={(txHash) => console.log('Swap complete:', txHash)}
@@ -102,7 +102,7 @@ import { BitBadgesSwapClient } from 'bitbadges-swap-widget';
 const client = new BitBadgesSwapClient('https://api.bitbadges.io');
 
 const estimate = await client.getSwapEstimate({
-  tokenIn: '1000000ubadge',
+  tokenIn: '1000000000000000000abadge',
   tokenOutDenom: 'uosmo',
   chainIdsToAddresses: { 'bitbadges-1': 'bb1...' },
   slippageTolerancePercent: '1',

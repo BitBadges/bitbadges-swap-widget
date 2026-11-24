@@ -23,7 +23,7 @@ describe('BitBadgesSwapClient', () => {
         success: true,
         estimate: {
           tokenOutAmount: '1000000',
-          tokenInAmount: '500000',
+          tokenInAmount: '500000000000000',
           skipGoMsgs: [],
           assetPath: [],
           doesSwap: true,
@@ -36,7 +36,7 @@ describe('BitBadgesSwapClient', () => {
       });
 
       const params = {
-        tokenIn: '500000ubadge',
+        tokenIn: '500000000000000abadge',
         tokenOutDenom: 'uosmo',
         chainIdsToAddresses: { 'bitbadges-1': 'bb1abc123' },
         slippageTolerancePercent: '1',
@@ -82,7 +82,7 @@ describe('BitBadgesSwapClient', () => {
 
       await expect(
         client.getSwapEstimate({
-          tokenIn: '1ubadge',
+          tokenIn: '1000000000abadge',
           tokenOutDenom: 'uosmo',
           chainIdsToAddresses: {},
           slippageTolerancePercent: '1',
@@ -99,7 +99,7 @@ describe('BitBadgesSwapClient', () => {
           Promise.resolve({
             chain_to_assets_map: {
               'bitbadges-1': [
-                { denom: 'ubadge', symbol: 'BADGE', name: 'BitBadges', decimals: 6 },
+                { denom: 'abadge', symbol: 'BADGE', name: 'BitBadges', decimals: 18 },
               ],
               'osmosis-1': [
                 { denom: 'uosmo', symbol: 'OSMO', name: 'Osmosis', decimals: 6 },
@@ -112,7 +112,7 @@ describe('BitBadgesSwapClient', () => {
 
       expect(assets).toHaveLength(2);
       expect(assets[0].chainId).toBe('bitbadges-1');
-      expect(assets[0].denom).toBe('ubadge');
+      expect(assets[0].denom).toBe('abadge');
       expect(assets[1].chainId).toBe('osmosis-1');
       expect(assets[1].symbol).toBe('OSMO');
     });
@@ -129,7 +129,7 @@ describe('BitBadgesSwapClient', () => {
         ok: true,
         json: () =>
           Promise.resolve({
-            pools: [{ poolId: '1', asset1: 'ubadge', asset2: 'uosmo' }],
+            pools: [{ poolId: '1', asset1: 'abadge', asset2: 'uosmo' }],
             pagination: { hasMore: false },
           }),
       });

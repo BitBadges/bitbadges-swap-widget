@@ -74,8 +74,8 @@ function formatDenom(denom: string): string {
   if (denom.startsWith('0x') && denom.length > 12) {
     return `${denom.slice(0, 6)}...${denom.slice(-4)}`;
   }
-  // Remove common prefixes for readability
-  if (denom.startsWith('u') && denom.length <= 10) {
+  // Preserve short micro/atto-prefixed denoms for readability
+  if ((denom.startsWith('u') || denom.startsWith('a')) && denom.length <= 10) {
     return denom;
   }
   return denom.length > 16 ? `${denom.slice(0, 12)}...` : denom;
