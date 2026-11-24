@@ -9,6 +9,28 @@ import type {
 } from '../types';
 
 const DEFAULT_API_URL = 'https://api.bitbadges.io';
+const LOCALHOST_HOSTS = new Set(['localhost', '127.0.0.1', '[::1]']);
+
+function validateApiUrl(rawUrl: string): string {
+  let parsed: URL;
+  try {
+    parsed = new URL(rawUrl);
+  } catch {
+    throw new Error(`Invalid API URL: ${rawUrl}`);
+  }
+
+  if (parsed.protocol === 'https:') {
+    return rawUrl.replace(/\/+$/, '');
+  }
+
+  if (parsed.protocol === 'http:' && LOCALHOST_HOSTS.has(parsed.hostname)) {
+    return rawUrl.replace(/\/+$/, '');
+  }
+
+  throw new Error(
+    `API URL must use https:// (http:// is only permitted for localhost): ${rawUrl}`
+  );
+}
 
 /**
  * Standalone API client for the BitBadges indexer swap/pool endpoints.
@@ -18,8 +40,7 @@ export class BitBadgesSwapClient {
   private apiUrl: string;
 
   constructor(apiUrl: string = DEFAULT_API_URL) {
-    // Strip trailing slash
-    this.apiUrl = apiUrl.replace(/\/+$/, '');
+    this.apiUrl = validateApiUrl(apiUrl);
   }
 
   // --------------------------------------------------------------------------

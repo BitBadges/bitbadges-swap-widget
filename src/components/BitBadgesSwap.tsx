@@ -149,7 +149,11 @@ function SwapWidgetInner({
       chainId: sourceAsset.chainId || 'bitbadges-1',
     });
 
-    const txHash = await executeSwap(estimate);
+    const txHash = await executeSwap(estimate, {
+      tokenInDenom: sourceAsset.denom,
+      tokenInAmount: amount,
+      slippageTolerancePercent: slippage,
+    });
     if (txHash) {
       updateStatus(entry.id, 'success', txHash);
     } else {
