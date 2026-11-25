@@ -167,5 +167,16 @@ describe('BitBadgesSwapClient', () => {
       await c.getAssets();
       expect(mockFetch).toHaveBeenCalledWith('https://api.example.com/api/v0/skip/assets');
     });
+
+    it('should allow http:// for localhost development URLs', () => {
+      expect(() => new BitBadgesSwapClient('http://localhost:3001')).not.toThrow();
+      expect(() => new BitBadgesSwapClient('http://127.0.0.1:8080')).not.toThrow();
+    });
+
+    it('should reject non-HTTPS remote URLs and invalid URLs', () => {
+      expect(() => new BitBadgesSwapClient('http://api.example.com')).toThrow(/https:\/\//);
+      expect(() => new BitBadgesSwapClient('javascript:alert(1)')).toThrow(/https:\/\//);
+      expect(() => new BitBadgesSwapClient('not-a-url')).toThrow(/Invalid API URL/);
+    });
   });
 });

@@ -12,7 +12,19 @@ export { WalletConnect } from './components/WalletConnect';
 
 // Hooks
 export { useSwapEstimate } from './hooks/useSwapEstimate';
-export { useSwapExecute } from './hooks/useSwapExecute';
+export {
+  useSwapExecute,
+  validateAndBuildCosmosMsgs,
+  validateSlippagePercent,
+  ALLOWED_SWAP_TYPE_URLS,
+  MIN_SLIPPAGE_PERCENT,
+  MAX_SLIPPAGE_PERCENT,
+  HIGH_SLIPPAGE_WARNING_PERCENT,
+} from './hooks/useSwapExecute';
+export type {
+  SwapExecutionExpectation,
+  CosmosMsg,
+} from './hooks/useSwapExecute';
 export { useAssetList } from './hooks/useAssetList';
 export { usePoolInfo } from './hooks/usePoolInfo';
 export { useSwapHistory } from './hooks/useSwapHistory';
